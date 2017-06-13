@@ -1,0 +1,4 @@
+!#/bin/bash
+curl 
+grep -i -E '<a href=".*">' stronka > strony
+grep -E -o 'href="([^"#]+)' strony | cut -d'"' -f2 > strony2
