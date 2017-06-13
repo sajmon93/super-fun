@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ -d "$@" ]; then
+echo "Number of files is $(find "$@" -type f | wc -l)"
+echo "Number of directories is $( find "$@" -type d | wc -l)"
+else
+echo "[Error] Please choose directory."
+exit 1
+
+fi
+

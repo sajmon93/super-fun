@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo -n "wpisz tekst"
+read  text
+echo "wpisales tekst kolego: $text"
