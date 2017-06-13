@@ -1,0 +1,22 @@
+#!/bin/bash 
+
+S1="szymon"
+S2="szymon"
+S3=13
+S4=23
+if [ $S1 = $S2 ]; then 
+         echo "equal"
+         
+else
+         echo " not equal"
+
+fi
+
+if [ $S3 = $S4 ] ; then 
+echo "variables are the same"
+elif [ $S3 -gt $S4 ]; then
+echo "S3 is bigger than S4"
+else 
+echo "S4 is bigger than S3"
+
+fi
