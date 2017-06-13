@@ -1,4 +1,7 @@
-!#/bin/bash
-curl 
-grep -i -E '<a href=".*">' stronka > strony
-grep -E -o 'href="([^"#]+)' strony | cut -d'"' -f2 > strony2
+#!/bin/bash
+echo -n "Choose your website addres: "
+read address
+echo "Your website address is : $address"
+curl $address > page
+#grep -i -E '<a href=".*">' stronka > strony
+#grep -E -o 'href="([^"#]+)' strony | cut -d'"' -f2 > strony2
