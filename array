@@ -1,0 +1,12 @@
+#!/bin/bash
+
+filecontent=(cat "page2")
+for t in {$filecontent[@]}
+do 
+ 
+echo" $t"
+
+done
+
+
+
