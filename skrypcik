@@ -1,0 +1,33 @@
+#!/bin/bash 
+
+#rm url.txt
+#rm url2.txt
+#rm suburls.txt
+
+
+site="https://blog.garage-coding.com"
+
+
+
+function visit(){
+
+echo "visiting: $1"
+
+#getting url 
+curl -silent $site | grep href=\" | grep "http" | grep "http:\/\/[^\"]*" >> $2
+
+}
+
+visit $site url.txt
+
+while read line 
+do 
+visit  $line url2.txt
+
+done  <  url.txt
+
+while read line 
+do 
+visit $line suburls.txt
+
+done < url2.txt
