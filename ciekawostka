@@ -1,0 +1,10 @@
+#!/bin/bash
+
+function factorial {
+
+(($1)) ||  return 1
+factorial $(($1-1))
+return $(($1*$?))
+}
+factorial 8
+echo $?
