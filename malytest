@@ -1,0 +1,9 @@
+#!/bin/bash
+
+max=24
+min=26
+
+
+c=$((max + min)) 
+
+echo "$min+$max=$c" 
