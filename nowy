@@ -64,7 +64,7 @@ done < page2
 
 grep -i -E '<a href=".*">' page3 > page4
 grep -E -o 'href="([^"#]+)' page4 | cut -d'"' -f2 > page5 
-grep http page5 >> page2
+grep http page5 > page2
 
 IFS=$'\r\n' GLOBIGNORE="*"  command eval  'ARR=($(cat page2))'
 echo "${ARR[@]}"
