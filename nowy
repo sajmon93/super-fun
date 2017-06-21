@@ -50,6 +50,8 @@ for ((i=1; i <=$MAX; i++)); do
 
 while  read -r line
 
+####################sort page2 | uniq -u 
+
 do
 
  curl $line >> page3
@@ -63,7 +65,7 @@ grep -E -o 'href="([^"#]+)' page4 | cut -d'"' -f2 > page5
 grep http page5 > page2
 
 IFS=$'\r\n' GLOBIGNORE="*"  command eval  'ARR=($(cat page2))'
-
+echo "${ARR[@]}"
 done
 
 exit

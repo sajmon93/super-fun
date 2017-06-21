@@ -1,0 +1,12 @@
+#!/bin/bash
+
+address = https://blog.garage-coding.com
+
+myArr+= $address 
+
+while read -r line 
+
+
+
+#IFS=$'\r\n' GLOBIGNORE="*"  command eval  'ARR=($(cat page2))'
+echo "${ARR[@]}"
