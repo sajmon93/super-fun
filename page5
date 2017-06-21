@@ -228,7 +228,11 @@ https://stackoverflow.com/users/signup?ssrc=head&returnurl=%2fusers%2fstory%2fcu
 /users/827519/average?tab=topactivity
 /users/story/827519
 https://meta.stackoverflow.com/users/827519/average
+<<<<<<< HEAD
 https://stackexchange.com/users/438929/average
+=======
+http://stackexchange.com/users/438929/average
+>>>>>>> e231218ec2ebafe42d35a803e6884aa77644490d
 https://stackoverflow.com/users/827519/average
 https://blog.garage-coding.com
 https://security.stackexchange.com/questions/30054/wine-or-sandboxie-as-sandboxes
@@ -549,7 +553,11 @@ https://stackoverflow.com/users/signup?ssrc=head&returnurl=%2fusers%2fstory%2fcu
 /users/827519/average?tab=topactivity
 /users/story/827519
 https://meta.stackoverflow.com/users/827519/average
+<<<<<<< HEAD
 https://stackexchange.com/users/438929/average
+=======
+http://stackexchange.com/users/438929/average
+>>>>>>> e231218ec2ebafe42d35a803e6884aa77644490d
 https://stackoverflow.com/users/827519/average
 https://blog.garage-coding.com
 https://security.stackexchange.com/questions/30054/wine-or-sandboxie-as-sandboxes
@@ -640,6 +648,7 @@ https://stackexchange.com/sites
 //stackapps.com
 //area51.stackexchange.com
 https://www.stackoverflowbusiness.com/talent
+<<<<<<< HEAD
 /feed.xml
 mailto:stefan@garage-coding.com
 https://creativecommons.org/licenses/by/3.0/
@@ -2368,3 +2377,5 @@ https://creativecommons.org/terms/
 /about/contact
 mailto:info@creativecommons.org
 tel:1-415-429-6753
+=======
+>>>>>>> e231218ec2ebafe42d35a803e6884aa77644490d
