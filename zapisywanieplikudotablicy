@@ -1,12 +1,17 @@
 #!/bin/bash
 
-address = https://blog.garage-coding.com
+address="https://blog.garage-coding.com"
 
-myArr+= $address 
+curl $address > page
+grep -i -E '<a href=".*">' page > page1
+grep -E -o 'href="([^"#]+)' page1 | cut -d'"' -f2 > page2
+cat page2
+myArr=()
+myArr+=($address) 
 
-while read -r line 
 
 
 
-#IFS=$'\r\n' GLOBIGNORE="*"  command eval  'ARR=($(cat page2))'
-echo "${ARR[@]}"
+
+IFS=$'\r\n' GLOBIGNORE="*"  command eval  'myArr=($(cat page2))'
+echo "${myArr[@]}"
