@@ -1,0 +1,10 @@
+#!/bin/bash
+
+address="https://blog.garage-coding.com"
+echo "Your website address is : $address"
+curl $address > page
+MAX=3
+grep -i -E '<a href=".*">' page > page1
+grep -E -o 'href="([^"#]+)' page1 | cut -d'"' -f2 > page2
+cat page2
+

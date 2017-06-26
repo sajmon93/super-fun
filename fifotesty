@@ -1,20 +1,66 @@
 #!/bin/bash
 
-#mkfifo mypipe
+#mkfifo mypi
 
-####tablica=()
+address="https://blog.garage-coding.com"
 
+tablica=()
+tablica+="$address"
+echo "${tablica[@]}"
 exec 3<> mypipe
+set -x
+#trap read debug
+###################
+
+#peek()
+#{
+ # local tablica1=${1:tablica} val varname=2:-peek
+ # eval "${tablica[@]}  -gt 0  || return 1"
+ # eval "val=\${${tablica}[0]}"
+#printf -v "$varname" %s "$val"
+#}
+
+#peek
+
+###################
+
+pop()
+{
+local tablica1=${1:tablica} tablica val varname=${2:-var}
+eval "tablica=(\"\${$tablica1[@]}\")"
+if  [ ${#tablica[@]} -lt 1 ]
+then
+eval  "$varname="
+return 1
+fi
+
+eval "$varname=${tablica[0]}"
+
+unset tablica[0]
+eval "tablica1=(\"\${tablica[@]}\")"
+
+}
 
 
-while read -r line
-do
-  curl $line > mypipe
+pop tablica1 varname:
 
-done < page2
+####################
+
+
+
+
+
+
+
+
+#while read -r line
+#do
+#  curl $line  > mypipe
+
+#done < page2
 
 #mypipe > page3
 
 
 
-exit
+#exit
