@@ -1,0 +1,21 @@
+#!/bin/bash
+
+mkfifo mypipe
+
+####tablica=()
+
+exec 3<> mypipe
+
+while read -r line
+do
+  curl $line > mypipe
+
+done < page2
+grep -i -E '<a href=".*">' mypipe > page4
+grep -E -o 'href="([^"#]+)' page4 | cut -d'"' -f2 > page5
+grep http page5  > page2
+#mypipe > page3
+
+
+
+exit

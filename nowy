@@ -51,23 +51,30 @@ ARR+=$address
 for ((i=0; i <=$MAX; i++)); do
 
 ###uniq  page2
-
 while  read -r line
-# sort page2 | uniq -u 
 do
+####if grep -Fxq "$page2"  
+####then
+###:
+####else
+#uniq page2
 
- curl $line >> page3
-
+# sort page2 | uniq -u 
+ curl $line >> page3 # > usuniete
+#########fi
 #echo "name - $line"
 
 done < page2
+
+for((j=0; j<=$MAX; j++)); do
 
 grep -i -E '<a href=".*">' page3 > page4
 grep -E -o 'href="([^"#]+)' page4 | cut -d'"' -f2 > page5 
 grep http page5 > page2
 
-IFS=$'\r\n' GLOBIGNORE="*"  command eval  'ARR=($(cat page2))'
-echo "${ARR[@]}"
+#IFS=$'\r\n' GLOBIGNORE="*"  command eval  'ARR=($(cat page2))'
+#echo "${ARR[@]}"
+done
 done
 
 exit
