@@ -1,0 +1,78 @@
+#!/bin/bash
+
+rm page3
+rm page2
+
+#echo -n "Choose your website addres: "
+address="https://blog.garage-coding.com"
+echo "Your website address is : $address"
+curl $address > page
+MAX=3
+grep -i -E '<a href=".*">' page > page1
+grep -E -o 'href="([^"#]+)' page1 | cut -d'"' -f2 > page2
+cat page2
+
+###################################################################################################################################### 
+######################################################################################################################################
+
+ARR=()
+ARR+=$address
+
+#page2="$1"
+#while  read -r line
+# do
+# name=$line
+# curl $line >> page3
+
+#echo "name - $line"
+
+#done < page2
+
+#grep -i -E '<a href=".*">' page3 > page4
+#grep -E -o 'href="([^"#]+)' page4 | cut -d'"' -f2 > page5 
+#grep http page5 > page2
+
+#sed -n 's/.*href="\([^"]*\).*/\1/p' page3 >> page2
+
+#grep -Po '(?<=href=")[(^")*]' page3  > page4
+
+#######################################################################################################################################
+#######################################################################################################################################
+
+
+#IFS=$'\r\n' GLOBIGNORE="*"  command eval  'ARR=($(cat page2))'
+#echo "${ARR[@]}"
+
+
+########################################################################################################################################
+########################################################################################################################################
+#for page2
+
+for ((i=0; i<=$MAX; i++)); do
+
+while  read -r line
+do
+####if grep -Fxq "$page2"  
+####then
+###:
+####else
+
+# sort page2 | uniq -u 
+ curl $line >> page3 # > usuniete
+#########fi
+#echo "name - $line"
+
+done < page2
+
+#for((j=0; j<=$MAX; j++)); do
+
+grep -i -E '<a href=".*">' page3 > page4
+grep -E -o 'href="([^"#]+)' page4 | cut -d'"' -f2 > page5 
+grep http page5 > page2
+
+#IFS=$'\r\n' GLOBIGNORE="*"  command eval  'ARR=($(cat page2))'
+#echo "${ARR[@]}"
+done
+done
+
+exit

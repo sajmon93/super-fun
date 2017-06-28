@@ -1,15 +1,93 @@
 #!/bin/bash
 
+#set -x
+
+#trap read debug
+
+address="webscraper.io/test-sites/e-commerce/static"
+
+
 
 arr=()
-arr+=(1 2 4 6 7 8 9)
+arr1=()
+arr2=()
+arr+=$address
+#arr1+="${arr[1]" #: -1}"
 echo "${arr[@]}"
+for((i=0; i<=2; i++))
+do
+arr1+="${arr[@]: -1}"                         ####### getting last elelment
 
-for (( i= 0; i<4; i++))
-do 
- unset arr[$i]
-done 
+# arr=(${arr[@]}:1)                            ####### 	SHIFT ARRAY
+ 
+##arr1=("${arr1[@]}"$ )                      ####### PUSH ELEMENT
 
-echo "After unset : ${arr[@]}"
+#arr=(${arr[@]:0:$((${#arr[@]} -1))})      ####### POP ELEMENT
+
+echo "Arr status : ${arr[@]}"
+
+#arr1+= ${#arr[@]}
+for j in "${arr[@]}"
+do
+
+curl $j | grep -i -E '<a href=".*">' | grep -E -o 'href="([^"#]+)' | cut -d'"' -f2
+
+done
+
+arr=(${arr[@]:0:$((${#arr[@]} -1))})
+
+
+####mergelinks
+
+
+
+
+arr2=($( curl $j | grep -i -E '<a href=".*">' | grep -E -o 'href="([^"#]+)'  | cut -d'"' -f2))  
+
+for el in ${arr2[@]}
+do
+for em in ${arr1[@]}
+do
+if [ "$el" == "$em" ];
+then
+:
+else
+##arr=(${arr[@]:1})
+
+arr=("${arr[@]}" " $el ")
+#arr1+="${arr[@]: -1}"
+#arr=(${arr[@]:0:$((${#arr[@]} -1))})
+
+fi
+
+
+done
+done
+done
+#done 
+#arr1+=arr[$@]
+#curl
+echo "${arr1[@]} :this is arr1"
+echo "${arr2[@]} :this is arr2"
+#curl
+#grep
+
+
+
+
+
+#arr+=(1 2 3 4 5 6 7)
+#arr1=()
+#echo "${arr[@]}"
+
+#for (( i= 0; i<4; i++))
+#do
+
+# if [ ${#arr[2]} -lt
+# unset arr[$i]
+#done
+
+echo "After unset arr: ${arr[@]}"
+#echo " arr1: ${arr1[@]}"
 
 exit
