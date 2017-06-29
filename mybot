@@ -1,0 +1,37 @@
+#!/bin/bash
+
+#set -x 
+
+#trap read debug
+
+max=$3
+
+mkdir $2 | cd $2
+
+arr=( $1 )
+arr1=()
+arr2=()
+
+
+
+for ((i=0; i<$3; i++))
+do
+for ((j=0; j<${#arr[@]}; j++))
+do
+for 
+
+
+
+if[ "$s" == "$1" ] 
+then
+continue
+fi
+curl $(arr[j]}
+arr1=($(grep -i -E '<a href=".*">' $(ls -t | head -1) | grep -E -o 'href="([^"#]+)'  | cut -d'"' -f2))
+
+##########absolute links
+
+arr1=(${arr1[@]}/#'/'/${arr[j]}/})
+
+
+
