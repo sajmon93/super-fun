@@ -4,7 +4,7 @@
 
 #trap read debug
 
-address="webscraper.io/test-sites/e-commerce/static"
+address="https://blog.garage-coding.com"
 
 
 
@@ -34,7 +34,7 @@ curl $j | grep -i -E '<a href=".*">' | grep -E -o 'href="([^"#]+)' | cut -d'"' -
 
 done
 
-arr=(${arr[@]:0:$((${#arr[@]} -1))})
+#arr=(${arr[@]:0:$((${#arr[@]} -1))})
 
 
 ####mergelinks
