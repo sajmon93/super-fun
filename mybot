@@ -1,81 +1,48 @@
 #!/bin/bash
 
-set -x 
 
-#trap read debug
-
-###max=$3 #depth level
-
-###################
 function checking ()
 {
-
-for s in "${@:2}";
-do
-[ "$s" == "$1" ] && return 0;
+for x in "${@:2}";
+do [[ "$x" == "$1" ]] && return 0;
 done
- 
 return 1
-
 }
 
+mkdir $2
+cd $2 # $2-directory to store pages
+
+queue=( $1 ) #page
 
 
+for((i=0; i<$3; i++))  # $3-max depth level
 
-##echo "${@:2}"
-mkdir $2 
-cd $2 #directory to store pages
-
-arr=( $1 )  
-#arr1=()
-arr2=()
-arr3=()
-
-
-for ((i=0; i<$3; i++))
-do
-#echo "$3"
-for ((j=0; j<${#arr[j]}; j++))
 do
 
-#################################
-#echo "${@:2}"
-#for s in "${@:2}"
-#do
-#echo "${@:2}"
-#[ "$S" == "$1" ] && return 0
-#done
-#return 1 
+for((j=0; j <${#queue[@]}; j++))
 
-#if [ true ]
-#then
-# :
-#else
-#fi
+do
 
-#done
-########echo "${arr[j]}"
-#################################
+if checking "${queue[j]}" "${checkedurl[@]}"
 
-if checking "${arr[j]}" "${arr3[@]}";
-
-then 
+then
 
 continue 
 
 fi
-curl -s ${arr[j]} > /dev/null
-#lastelement=$( ls -t | head -1 )
-arr1=( $(grep -E -i '<a href=".*">' $( ls -t | head -1 ) | grep -E -o 'href="([^"#]+)' | cut -d'"' -f2 | grep http ))
-#arr1=( $(grep -E -o 'href="([^"#]+)' $( ls -t | head -1 ) | cut -d'"' -f2) )
-##########absolute links
-arr1=( "${arr1[@]/#'/'/"${arr[j]}/"}" )
-arr2=( "${arr2[@]}" "${arr1[@]}" )
-#fi
-#done
+
+curl -s "${queue[j]}" > /dev/null   > "strona[$j]"
+
+tempqueue=( $(grep -Eo 'href="([^"#]+)' $( ls -t | head -1 ) | cut -d'"' -f2)) #temporary array
+
+tempqueue=( "${tempqueue[@]/#'/'/"${queue[j]}/"}" ) #changing relative links to absolute
+beforequeue=( "${beforequue[@]}" "${tempqueue[@]}" ) 
+
 done 
-arr=( "${arr2[@]}" )
-arr3=( "${arr3[@]}" "${arr[@]}" )
+
+checkedurl=( "${checkedurl[@]}" "${queue[@]}" ) #list of all urls
+queue=( "${beforequeue[@]}" )
+
 done
 
-#exit
+
