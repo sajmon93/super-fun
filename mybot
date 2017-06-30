@@ -1,37 +1,81 @@
 #!/bin/bash
 
-#set -x 
+set -x 
 
 #trap read debug
 
-max=$3
+###max=$3 #depth level
 
-mkdir $2 | cd $2
+###################
+function checking ()
+{
 
-arr=( $1 )
-arr1=()
+for s in "${@:2}";
+do
+[ "$s" == "$1" ] && return 0;
+done
+ 
+return 1
+
+}
+
+
+
+
+##echo "${@:2}"
+mkdir $2 
+cd $2 #directory to store pages
+
+arr=( $1 )  
+#arr1=()
 arr2=()
-
+arr3=()
 
 
 for ((i=0; i<$3; i++))
 do
-for ((j=0; j<${#arr[@]}; j++))
+#echo "$3"
+for ((j=0; j<${#arr[j]}; j++))
 do
-for 
 
+#################################
+#echo "${@:2}"
+#for s in "${@:2}"
+#do
+#echo "${@:2}"
+#[ "$S" == "$1" ] && return 0
+#done
+#return 1 
 
+#if [ true ]
+#then
+# :
+#else
+#fi
 
-if[ "$s" == "$1" ] 
-then
-continue
+#done
+########echo "${arr[j]}"
+#################################
+
+if checking "${arr[j]}" "${arr3[@]}";
+
+then 
+
+continue 
+
 fi
-curl $(arr[j]}
-arr1=($(grep -i -E '<a href=".*">' $(ls -t | head -1) | grep -E -o 'href="([^"#]+)'  | cut -d'"' -f2))
-
+curl -s ${arr[j]} > /dev/null
+#lastelement=$( ls -t | head -1 )
+arr1=( $(grep -E -i '<a href=".*">' $( ls -t | head -1 ) | grep -E -o 'href="([^"#]+)' | cut -d'"' -f2 | grep http ))
+#arr1=( $(grep -E -o 'href="([^"#]+)' $( ls -t | head -1 ) | cut -d'"' -f2) )
 ##########absolute links
+arr1=( "${arr1[@]/#'/'/"${arr[j]}/"}" )
+arr2=( "${arr2[@]}" "${arr1[@]}" )
+#fi
+#done
+done 
+arr=( "${arr2[@]}" )
+arr3=( "${arr3[@]}" "${arr[@]}" )
+done
 
-arr1=(${arr1[@]}/#'/'/${arr[j]}/})
-
-
-
+#exit
