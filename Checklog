@@ -1,0 +1,34 @@
+int checklog(char *login, char *haslo)
+{
+  char const* const logins = "logins";
+	FILE *file = fopen(logins, "r");
+	char line[512];
+	char *search = " ";
+	char *log;
+	while (fgets(line, sizeof(line), file))
+	{
+		log = strtok(line, search);
+		while( log != NULL )
+		{
+			if((strcmp(log, login)) == 0)
+			{
+				printf("login found:%s\n", log);
+				log = strtok(NULL, search);
+				continue;
+			}
+			else if((strcmp(log, haslo)) == 0)
+			{
+				printf("password found:%s\n", log);
+				printf("Found\n");
+				return 0;
+			}
+			else
+			{
+				break;
+			}
+		}
+	}
+        fclose(file);
+	printf("Not found\n");
+	return -1;
+}
