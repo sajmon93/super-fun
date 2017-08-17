@@ -1,0 +1,34 @@
+from selenium import webdriver
+# noinspection PyUnresolvedReferences
+from selenium.webdriver.common.keys import Keys
+# noinspection PyUnresolvedReferences
+import unittest
+# noinspection PyUnresolvedReferences
+import time
+
+
+
+class All_case(unittest.TestCase):
+    driver = webdriver.Firefox()
+    # driver.implicitly_wait(30)
+    driver.maximize_window()
+
+    def setUp(self):
+        pass
+    def test_afirst(self):
+        driver = self.driver
+        driver.get("http://automationpractice.com")
+        elem = driver.find_element_by_class_name("login")
+        elem.click()
+        addrem = driver.find_element_by_id("email")
+        addrem.send_keys("szymon.burko@vp.pl")
+        passwrd= driver.find_element_by_id("passwd")
+        passwrd.send_keys("qwerty")
+        signin = driver.find_element_by_id("SubmitLogin")
+        signin.click()
+        time.sleep(5)
+        self.assertIn("logout", driver.page)
+    def tearDown(self):
+        pass
+if __name__ == "__main__":
+    unittest.main(    
